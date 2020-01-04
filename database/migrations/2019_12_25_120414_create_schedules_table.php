@@ -16,7 +16,13 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('datetime');
+
+            // Foreign key
             $table->bigInteger('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->bigInteger('tutor_id')->unsigned();
+            $table->foreign('tutor_id')->references('id')->on('tutors');
+
             $table->timestamps();
         });
     }

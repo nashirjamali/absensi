@@ -19,10 +19,12 @@ class CreateStudentsTable extends Migration
             $table->char('gender');
             $table->string('address');
             $table->string('phone');
-            $table->bigInteger('course_id');
-            $table->timestamps();
 
-            
+            // Foreign key
+            $table->bigInteger('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
+
+            $table->timestamps();
         });
     }
 

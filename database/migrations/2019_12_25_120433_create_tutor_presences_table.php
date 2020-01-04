@@ -15,6 +15,15 @@ class CreateTutorPresencesTable extends Migration
     {
         Schema::create('tutor_presences', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
+            // Foreign key
+            $table->bigInteger('tutor_id')->unsigned();
+            $table->foreign('tutor_id')->references('id')->on('tutors');
+            $table->bigInteger('schedule_id')->unsigned();
+            $table->foreign('schedule_id')->references('id')->on('schedules');
+
+            $table->dateTime('datetime');
+            $table->string('status');
             $table->timestamps();
         });
     }
